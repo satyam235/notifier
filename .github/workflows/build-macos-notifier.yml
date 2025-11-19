@@ -103,29 +103,29 @@ jobs:
         cp -R build_universal/Build/Products/Release-macosx/SecOpsRebootNotifier.app ../../distribution/universal/ || \
         echo "Universal build not found at expected location"
         
-        - name: Create ZIP archives
-          run: |
-            cd distribution/intel && zip -r ../../SecOpsRebootNotifier-x86_64.zip SecOpsRebootNotifier.app || echo "No Intel app to zip"
-            cd ../arm64 && zip -r ../../SecOpsRebootNotifier-arm64.zip SecOpsRebootNotifier.app || echo "No ARM64 app to zip"
-            cd ../universal && zip -r ../../SecOpsRebootNotifier-universal.zip SecOpsRebootNotifier.app || echo "No Universal app to zip"
-            cd ../..
-            ls -lh *.zip || echo "No zip files created"
-        
-        - name: Upload Intel (x86_64) artifact
-          uses: actions/upload-artifact@v4
-          if: hashFiles('SecOpsRebootNotifier-x86_64.zip') != ''
-          with:
-            name: SecOpsRebootNotifier-Intel-x86_64
-            path: SecOpsRebootNotifier-x86_64.zip
-            retention-days: 30
-        
-        - name: Upload ARM64 (Apple Silicon) artifact
-          uses: actions/upload-artifact@v4
-          if: hashFiles('SecOpsRebootNotifier-arm64.zip') != ''
-          with:
-            name: SecOpsRebootNotifier-AppleSilicon-arm64
-            path: SecOpsRebootNotifier-arm64.zip
-            retention-days: 30
+    - name: Create ZIP archives
+      run: |
+        cd distribution/intel && zip -r ../../SecOpsRebootNotifier-x86_64.zip SecOpsRebootNotifier.app || echo "No Intel app to zip"
+        cd ../arm64 && zip -r ../../SecOpsRebootNotifier-arm64.zip SecOpsRebootNotifier.app || echo "No ARM64 app to zip"
+        cd ../universal && zip -r ../../SecOpsRebootNotifier-universal.zip SecOpsRebootNotifier.app || echo "No Universal app to zip"
+        cd ../..
+        ls -lh *.zip || echo "No zip files created"
+    
+    - name: Upload Intel (x86_64) artifact
+      uses: actions/upload-artifact@v4
+      if: hashFiles('SecOpsRebootNotifier-x86_64.zip') != ''
+      with:
+        name: SecOpsRebootNotifier-Intel-x86_64
+        path: SecOpsRebootNotifier-x86_64.zip
+        retention-days: 30
+    
+    - name: Upload ARM64 (Apple Silicon) artifact
+      uses: actions/upload-artifact@v4
+      if: hashFiles('SecOpsRebootNotifier-arm64.zip') != ''
+      with:
+        name: SecOpsRebootNotifier-AppleSilicon-arm64
+        path: SecOpsRebootNotifier-arm64.zip
+        retention-days: 30
     
     - name: Upload Universal Binary artifact
       uses: actions/upload-artifact@v4
