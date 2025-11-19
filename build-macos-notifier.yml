@@ -88,19 +88,19 @@ jobs:
     - name: Copy built apps to distribution
       working-directory: macos_notifier/SecOpsRebootNotifier
       run: |
-        # Copy Intel build
-        cp -R build/Build/Products/Release/SecOpsRebootNotifier.app ../../../distribution/intel/ || \
-        cp -R build/Build/Products/Release-macosx/SecOpsRebootNotifier.app ../../../distribution/intel/ || \
+  # Copy Intel build
+  cp -R build/Build/Products/Release/SecOpsRebootNotifier.app ../../distribution/intel/ || \
+  cp -R build/Build/Products/Release-macosx/SecOpsRebootNotifier.app ../../distribution/intel/ || \
         echo "Intel build not found at expected location"
         
-        # Copy ARM64 build
-        cp -R build_arm64/Build/Products/Release/SecOpsRebootNotifier.app ../../../distribution/arm64/ || \
-        cp -R build_arm64/Build/Products/Release-macosx/SecOpsRebootNotifier.app ../../../distribution/arm64/ || \
+  # Copy ARM64 build
+  cp -R build_arm64/Build/Products/Release/SecOpsRebootNotifier.app ../../distribution/arm64/ || \
+  cp -R build_arm64/Build/Products/Release-macosx/SecOpsRebootNotifier.app ../../distribution/arm64/ || \
         echo "ARM64 build not found at expected location"
         
-        # Copy Universal build
-        cp -R build_universal/Build/Products/Release/SecOpsRebootNotifier.app ../../../distribution/universal/ || \
-        cp -R build_universal/Build/Products/Release-macosx/SecOpsRebootNotifier.app ../../../distribution/universal/ || \
+  # Copy Universal build
+  cp -R build_universal/Build/Products/Release/SecOpsRebootNotifier.app ../../distribution/universal/ || \
+  cp -R build_universal/Build/Products/Release-macosx/SecOpsRebootNotifier.app ../../distribution/universal/ || \
         echo "Universal build not found at expected location"
     
     - name: Create ZIP archives
